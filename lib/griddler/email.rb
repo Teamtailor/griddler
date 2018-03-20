@@ -1,4 +1,5 @@
 require 'htmlentities'
+require 'nokogiri'
 
 module Griddler
   class Email
@@ -97,9 +98,17 @@ module Griddler
 
     def clean_html(html)
       cleaned_html = clean_invalid_utf8_bytes(html)
+      cleaned_html = remove_style_tags(cleaned_html)
       cleaned_html = strip_tags(cleaned_html)
       cleaned_html = HTMLEntities.new.decode(cleaned_html)
       cleaned_html
+    end
+
+    def remove_style_tags(html)
+      item = Nokogiri::HTML(html)
+      item.search('//style').each { |a| a.replace("") }
+      item.search('//title').each { |a| a.replace("") }
+      item.at_xpath("//body")&.to_html
     end
 
     def deep_clean_invalid_utf8_bytes(object)
