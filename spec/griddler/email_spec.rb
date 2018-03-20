@@ -11,6 +11,42 @@ describe Griddler::Email, 'body formatting' do
     expect(body_from_email(html: body)).to eq 'Hello.'
   end
 
+  it 'removes any CSS styling in the body' do
+    body = <<-EOF
+      <html>
+        <body>
+          <style type="text/css">
+            #foo {
+             color: red;
+            }
+          </style>
+          Hola!
+        </body>
+      </html>
+    EOF
+
+    expect(body_from_email(html: body)).to eq "Hola!"
+  end
+
+  it 'handles replies from mail.com' do
+    body = <<~EOF
+      <html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Reply from mail.com
+      <div>
+      <div name="quote" style="margin:10px 5px 5px 10px; padding: 10px 0 10px 10px; border-left:2px solid #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+      <div style="margin:0 0 10px 0;"><b>Sent:</b>&nbsp;Tuesday, March 20, 2018 at 9:19 AM<br/>
+      <b>From:</b>&nbsp;&quot;Andr&eacute; Lign&eacute;&quot; &lt;hello@bzf.se&gt;<br/>
+      <b>To:</b>&nbsp;omgasaklitt@mail.com<br/>
+      <b>Subject:</b>&nbsp;Testing</div>
+
+      <div name="quoted-content">Sending an email to mail.com from Thunderbird</div>
+      </div>
+      </div>
+      </div></div></body></html>
+    EOF
+
+    expect(body_from_email(html: body)).to eq "Reply from mail.com"
+  end
+
   it 'uses the html field and sanitizes it when text param is empty' do
     body = <<-EOF
       <p>Hello.</p><span>-- REPLY ABOVE THIS LINE --</span><p>original message</p>
