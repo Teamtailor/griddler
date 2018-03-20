@@ -32,7 +32,8 @@ module Griddler::EmailParser
         .split(/[\r]*\n/)
         .reject do |line|
           line =~ /^[[:space:]]+>/ ||
-            line =~ /^[[:space:]]*Sent from my /
+            line =~ /^[[:space:]]*Sent from my / ||
+            line =~ /^[[:space:]]*Sent:/
         end.
         join("\n").
         strip
