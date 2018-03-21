@@ -99,6 +99,21 @@ describe Griddler::Email, 'body formatting' do
     expect(body_from_email(text: body)).to eq 'Hello.'
   end
 
+  it 'handles "Den [date] skrev [soandso]:" format' do
+    body = <<-EOF
+      Hello.
+
+      Den ons 2018-03-21 skrev Richard Hendricks, Pied Piper <conversations@email.teamtailor-staging.com>:
+      > Check out this report.
+      >
+      > It's pretty cool.
+      >
+      > Thanks, Tristan
+    EOF
+
+    expect(body_from_email(text: body)).to eq 'Hello.'
+  end
+
   it 'handles "On [date] [soandso] wrote:" format' do
     body = <<-EOF
       Hello.
