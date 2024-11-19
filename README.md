@@ -1,8 +1,9 @@
+## Deprecated as of June 6, 2024
+
+Griddler has been deprecated in favor of [ActionMailbox](https://guides.rubyonrails.org/action_mailbox_basics.html) since this is built into Rails now.
+
 Griddler
 ========
-
-[![Build Status](https://travis-ci.org/thoughtbot/griddler.png?branch=master)](https://travis-ci.org/thoughtbot/griddler)
-[![Code Climate](https://codeclimate.com/github/thoughtbot/griddler.png)](https://codeclimate.com/github/thoughtbot/griddler)
 
 ### Receive emails in your Rails app
 
@@ -213,10 +214,23 @@ implementation.
 Credits
 -------
 
-Griddler was written by Caleb Thompson and Joel Oliveira.
+Griddler was written by Caleb Hearth and Joel Oliveira.
 
 Thanks to our [contributors](https://github.com/thoughtbot/griddler/contributors)!
 
-![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
+<!-- START /templates/footer.md -->
+## About thoughtbot
 
+![thoughtbot](https://thoughtbot.com/thoughtbot-logo-for-readmes.svg)
+
+This repo is maintained and funded by thoughtbot, inc.
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+We love open source software!
+See [our other projects][community].
+We are [available for hire][hire].
+
+[community]: https://thoughtbot.com/community?utm_source=github
+[hire]: https://thoughtbot.com/hire-us?utm_source=github
+
+<!-- END /templates/footer.md -->
