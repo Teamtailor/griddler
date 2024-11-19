@@ -224,6 +224,22 @@ describe Griddler::Email, 'body formatting' do
     expect(body_from_email(text: body)).to eq 'Hello.'
   end
 
+  it 'handles french format with nbsp: "Le [date], [soandso] <email@example.com> a écrit :"' do
+    body = <<-EOF.strip_heredoc
+      Hello.
+
+      Le 11 mars 2016, at 18:00, Tristan <email@example.com> a écrit :
+      > Check out this report.
+      >
+      > It's pretty cool.
+      >
+      > Thanks, Tristan
+      >
+    EOF
+
+    expect(body_from_email(text: body)).to eq 'Hello.'
+  end
+
   it 'handles LONG french format: "Le [date], [soandso] <email@example.com> a écrit :"' do
     body = <<-EOF.strip_heredoc
       Hello.
