@@ -4,7 +4,6 @@ require File.expand_path('../boot', __FILE__)
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "sprockets/railtie"
 
 Bundler.require
 require "griddler"
@@ -47,13 +46,8 @@ module Dummy
     # like if you have constraints or database-specific column types
     # config.active_record.schema_format = :sql
 
-    # Enable the asset pipeline
-    config.assets.enabled = true
-
     config.secret_key_base = 'a_secret_key'
 
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
     config.secret_key_base = 'foo'
   end
 end
